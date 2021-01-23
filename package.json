@@ -1,23 +1,17 @@
 {
-  "name": "blockhash",
-  "version": "0.3",
-  "homepage": "https://github.com/commonsmachinery/blockhash-js",
+  "name": "@dnaroma/blockhash",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dnaroma/blockhash-js",
   "author": "Commons Machinery <dev@commonsmachinery.se>",
-  "description": "Perceptual image hash calculation tool",
+  "description": "A Custom fork of perceptual image hash calculation tool",
   "repository": {
     "type": "git",
-    "url": "https://github.com/commonsmachinery/blockhash-js.git"
+    "url": "https://github.com/dnaroma/blockhash-js.git"
   },
   "scripts": {
     "test": "mocha"
   },
   "main": "index.js",
-  "browser": {
-    "png-js": "./node_modules/png-js/png.js"
-  },
-  "browserify-shim": {
-    "png-js": "PNG"
-  },
   "browserify": {
     "transform": [
       "browserify-shim"
@@ -32,10 +26,8 @@
     "browserify-shim": "^3.8.0",
     "expect.js": "*",
     "glob": "*",
-    "jpeg-js": "0.0.4",
     "jshint": "*",
-    "mocha": "*",
-    "png-js": "^0.1.1"
+    "mocha": "*"
   },
   "license": "MIT"
 }

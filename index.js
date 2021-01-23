@@ -4,9 +4,6 @@
 // Copyright 2014 Commons Machinery http://commonsmachinery.se/
 // Distributed under an MIT license, please see LICENSE in the top dir.
 
-var PNG = require('png-js');
-var jpeg = require('jpeg-js');
-
 var one_bits = [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];
 
 /* Calculate the hamming distance for two hashes in hex format */
@@ -216,58 +213,8 @@ var blockhashData = function(imgData, bits, method) {
     return hash;
 };
 
-var blockhash = function(src, bits, method, callback) {
-    var xhr;
-
-    xhr = new XMLHttpRequest();
-    xhr.open('GET', src, true);
-    xhr.responseType = "arraybuffer";
-
-    xhr.onload = function() {
-        var data, contentType, imgData, jpg, png, hash;
-
-        data = new Uint8Array(xhr.response || xhr.mozResponseArrayBuffer);
-        contentType = xhr.getResponseHeader('content-type');
-
-        try {
-            if (contentType === 'image/png') {
-                png = new PNG(data);
-
-                imgData = {
-                    width: png.width,
-                    height: png.height,
-                    data: new Uint8Array(png.width * png.height * 4)
-                };
-
-                png.copyToImageData(imgData, png.decodePixels());
-            }
-            else if (contentType === 'image/jpeg') {
-                imgData = jpeg.decode(data);
-            }
-
-            if (!imgData) {
-                throw new Error("Couldn't decode image");
-            }
-
-            // TODO: resize if required
-
-            hash = blockhashData(imgData, bits, method);
-            callback(null, hash);
-        } catch (err) {
-            callback(err, null);
-        }
-    };
-
-    xhr.onerror = function(err) {
-        callback(err, null);
-    };
-
-    xhr.send();
-};
-
 module.exports = {
   hammingDistance: hammingDistance,
-  blockhash: blockhash,
   blockhashData: blockhashData
 };
 
