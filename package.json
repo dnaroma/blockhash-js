@@ -1,6 +1,6 @@
 {
   "name": "@dnaroma/blockhash",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/dnaroma/blockhash-js",
   "author": "Commons Machinery <dev@commonsmachinery.se>",
   "description": "A Custom fork of perceptual image hash calculation tool",
